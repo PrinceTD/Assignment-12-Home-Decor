@@ -1,6 +1,7 @@
 import React from 'react';
 import "./Banner.css"
 import bannerImg from '../../../img/Untitled-1.png'
+import { Button } from '@mui/material';
 
 const Banner = () => {
 
@@ -12,7 +13,7 @@ const Banner = () => {
                         <h1 style={{fontSize:"70px", fontFamily:"'Mochiy Pop P One', sans-serif"}}> <span className='pb-5'>HOME</span> <br /> <span>DECOR</span></h1>
                         <h5 className='pt-3' style={{ color: "red" }}>Decorate with Furniture</h5>
                         <p className='pt-3' style={{ color: "gray" }}>Decorate and Shop your  Dream Home</p>
-                        <button className="mb-5 mt-3">Shop Now </button>
+                        <Button variant="contained">Shop Now</Button>
                     </div>
 
                     <div className="col-md-7">

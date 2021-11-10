@@ -8,6 +8,7 @@ import './App.css';
 import Home from './componets/Home/Home';
 import About from './componets/Page/About/About';
 import Contact from './componets/Page/Contact/Contact';
+import Login from './componets/Page/Login/Login';
 
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/contact">
             <Contact></Contact>
+          </Route>
+          <Route path="/login">
+            <Login></Login>
           </Route>
         </Switch>
       </Router>

@@ -14,6 +14,8 @@ const Header = () => {
               <Link to="/home">Home</Link>
               <Link to="/about">About</Link>
               <Link to="/contact">Contact</Link>
+              <Link to="/login">LogIn</Link>
+            
              </Nav>
           </Navbar.Collapse>
         </Container>
