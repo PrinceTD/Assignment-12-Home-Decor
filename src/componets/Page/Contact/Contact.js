@@ -47,7 +47,7 @@ const Contact = () => {
                                 </Box>
                                 <div className='p-2'>
                                     <Link to='/home'>
-                                        <Button variant="outlined">Sent</Button></Link>
+                                        <Button style={{textDecoration:"none"}} variant="outlined">Sent</Button></Link>
                                 </div>
                             </div >
 

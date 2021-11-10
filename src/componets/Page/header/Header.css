@@ -1,0 +1,10 @@
+.nav-bar{
+    text-decoration: none;
+    padding-left: 12px;
+    color: black;
+    font-weight: 600;
+}
+.nav-bar:hover{
+   
+    text-decoration: underline;
+}

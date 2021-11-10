@@ -14,7 +14,7 @@ const Home = () => {
             <Add></Add>
             <Header></Header>
             <Banner></Banner>
-            <Info></Info>
+            {/* <Info></Info> */}
             <Follow></Follow>
             <Footer></Footer>
 

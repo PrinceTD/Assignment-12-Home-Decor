@@ -3,7 +3,7 @@ import React from 'react';
 const Add = () => {
     return (
         <div className='bg-dark text-light'>
-            <div className='container '>
+            <div className='container'>
             <div className='row'>
                 <div className='col-md-6 col-6'>
                     <p>
@@ -14,7 +14,7 @@ const Add = () => {
                     </p>
                 </div>
                 <div className="col-md-6 d-flex flex-row-reverse col-6">
-                    <p><i className="fas fa-phone-alt"></i>  0180-0999992</p>
+                    <p><i className="fas fa-phone-alt"></i>0180-0999992</p>
                 </div>
 
             </div>

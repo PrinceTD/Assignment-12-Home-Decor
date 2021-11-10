@@ -2,25 +2,35 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import "./Header.css"
+import useAuth from '../../../hooks/useAuth';
+import { Button } from '@mui/material';
+
 
 const Header = () => {
-    return (
-        <Navbar bg="light" expand="lg">
-        <Container>
-          <Navbar.Brand to="#home">React-Bootstrap</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Link to="/home">Home</Link>
-              <Link to="/about">About</Link>
-              <Link to="/contact">Contact</Link>
-              <Link to="/login">LogIn</Link>
-            
-             </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    );
+  const { user, logOut } = useAuth();
+  
+  return (
+    <Navbar style={{ backgroundColor: "coral", fontWeight: '700' }} expand="lg">
+      <Container>
+        <Link style={{fontWeight: '700', fontSize: '20px'}} className='nav-bar' to="/home">HOME DECOR</Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Link className='nav-bar' to="/home">Home</Link>
+            <Link className='nav-bar' to="/about">About</Link>
+            <Link className='nav-bar' to="/contact">Contact</Link>
+            <Link className='nav-bar' to="/service">Service</Link>
+            {
+              user.email ? <button onClick={logOut} className='nav-bar border-0'>SignOut</button> :
+                <Link className='nav-bar' to="/login">LogIn</Link>
+            }
+
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 };
 
 export default Header;

@@ -1,54 +1,76 @@
-import { Container, Grid, TextField, Typography, Button, Card, CardActions, CardContent } from '@mui/material';
-import { Box } from '@mui/system';
-import React from 'react';
-import "./login.css"
+import React, { useState } from 'react';
+import Header from '../header/Header';
+import "./login.css";
+import login from "../../../img/login.jpg"
+import { Link } from 'react-router-dom';
+import Container from '@mui/material/Container';
+import { Button, Grid, TextField, Typography, Alert, CircularProgress } from '@mui/material';
+import useAuth from '../../../hooks/useAuth';
+
+
+
+
 
 const Login = () => {
-    const handelLogin = e => {
+    const [loginData, setLoginData] = useState({});
+    const { user, loginUser, isLoading, authError } = useAuth();
 
+    const handelOnChange = e => {
+        const fild = e.target.name;
+        const value = e.target.value;
+        const newLoginData = { ...loginData };
+        newLoginData[fild] = value;
+        setLoginData(newLoginData);
+    }
+    const handelLoginSubmit = e => {
+        loginUser(loginData.email, loginData.password);
         e.preventDefault();
     }
 
-
-    const card = (
-        <React.Fragment>
-            <CardContent>
-                <Typography variant="subtitle1" gutterBottom component="div">
-                    Sign in to continue
-                </Typography>
-                <Typography variant="h5" component="div">
-                    <form onSubmit={handelLogin}>
-                        <TextField
-                           
-                            id="standard-basic"
-                            label="Your Email"
-                            variant="standard" />
-                        <TextField
-                          
-                            id="standard-basic"
-                            label="Your Password"
-                            type="password"
-                            variant="standard"
-                        />
-                        <Button
-                           
-                            variant="contained"
-                            type="submit"
-                        > Sign In</Button>
-                    </form>
-                </Typography>
-
-            </CardContent>
-           
-        </React.Fragment>
-    );
-
     return (
-        <div className="d-flex">
-            <Box sx={{ minWidth: 275 }}>
-                <Card variant="outlined">{card}</Card>
-            </Box>
-            
+        <div>
+            <Header></Header>
+            <Container>
+                <Grid container spacing={2}>
+                    <Grid item sx={{ mt: 10 }} xs={12} md={6}>
+                        <Typography variant="h4" gutterBottom>Plase Sign In </Typography>
+                        <form onSubmit={handelLoginSubmit}>
+                            <TextField
+                                sx={{ width: '75%', m: 1 }}
+                                id="standard-basic"
+                                label="Your Email"
+                                name="email"
+                                type="email"
+                                onChange={handelOnChange}
+                                variant="standard" />
+                            <TextField
+                                sx={{ width: '75%', m: 1 }}
+                                id="standard-basic"
+                                label="Your Password"
+                                type='password'
+                                name="password"
+                                onChange={handelOnChange}
+                                variant="standard" />
+                            <br />
+                            <Link to="/register">
+                                <Button style={{ textDecoration: 'none', alignItems: "center" }} variant='text'>new User? please Register</Button>
+                            </Link>
+                            <br />
+                            <Button sx={{ width: '75%', m: 1 }} type="submit" variant='contained'>Sign In</Button>
+
+                        </form>
+                        {isLoading && <CircularProgress />}
+                        {
+                            user?.email && <Alert severity="success">successfully login</Alert>
+
+                        }
+                        {authError && <Alert severity="error">{authError}</Alert>}
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <img src={login} alt="" style={{ width: '100%' }} />
+                    </Grid>
+                </Grid>
+            </Container>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
-import './footer.css'
-import icon from '../../img/Untitled-4.png'
-import { p } from 'react-router-dom';
+import './footer.css';
+import { TextField , Box, Button } from '@mui/material';
+import ExFooter from './ExFooter';
 
 const Footer = () => {
     return (
@@ -16,27 +16,23 @@ const Footer = () => {
                     <p className='pe-2'>contact</p>
                 </div>
 
-                <div className="col-12 col-md-4">
-                    <input className="border-size" type="email" name="email" id="" />
-                    <input className="border-0 border-size" type="submit" value="subscribe" />
+                <div className="col-12 col-md-4 d-flex">
+                    <Box
+                                    sx={{
+                                        width: 500,
+                                        maxWidth: '50%',
+                                    }}
+                                >
+                                    <TextField fullWidth label="Your Email" id="fullWidth" />
+                                    
+                    </Box>
+                    <Button variant="contained">Follow</Button>
+                   
                 </div>
 
             </div>
             <div>
-                <hr />
-                <div className='row'>
-                    <div className='col-md-6'>
-                        <p className='pt-2'>© 2021 PrinceTD. All rights reserved</p>
-                    </div>
-                    <div className='col-md-6'>
-                        <h6>
-                        <i className="pe-3 fab fa-facebook-f"></i>
-                        <i className="pe-3 fab fa-instagram"></i>
-                        <i className="pe-3 fab fa-google-plus-g"></i>
-                        <i className="pe-3 fas fa-globe-europe"></i>
-                        </h6>
-                    </div>
-                </div>
+               <ExFooter></ExFooter>
             </div>
         </div>
     );
