@@ -1,9 +1,11 @@
 import React from 'react';
 import './footer.css';
-import { TextField , Box, Button } from '@mui/material';
+import { TextField, Box, Button } from '@mui/material';
 import ExFooter from './ExFooter';
+import useAuth from '../../hooks/useAuth';
 
 const Footer = () => {
+    const {user}= useAuth();
     return (
         <div className='container text-center'>
             <div className="row mt-5 mb-5">
@@ -18,21 +20,27 @@ const Footer = () => {
 
                 <div className="col-12 col-md-4 d-flex">
                     <Box
-                                    sx={{
-                                        width: 500,
-                                        maxWidth: '50%',
-                                    }}
-                                >
-                                    <TextField fullWidth label="Your Email" id="fullWidth" />
-                                    
+                        sx={{
+                            width: 500,
+                            maxWidth: '50%',
+                        }}
+                    >
+                        <TextField
+                            fullWidth
+                            label='Your Email'
+                            defaultValue={user?.email}
+                            id="fullWidth" />
+
                     </Box>
-                    <Button variant="contained">Follow</Button>
-                   
+                    <Button
+                        variant="contained"
+                    >Follow</Button>
+
                 </div>
 
             </div>
             <div>
-               <ExFooter></ExFooter>
+                <ExFooter></ExFooter>
             </div>
         </div>
     );

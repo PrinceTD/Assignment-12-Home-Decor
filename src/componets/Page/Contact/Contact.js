@@ -3,12 +3,15 @@ import { TextField, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 import Add from '../../share/Add/Add';
+import ExFooter from '../../share/ExFooter';
 import Footer from '../../share/Footer';
 import Header from '../header/Header';
 import './Contact.css'
 
 const Contact = () => {
+    const { user } = useAuth();
     return (
         <>
             <Add></Add>
@@ -33,7 +36,11 @@ const Contact = () => {
                                         maxWidth: '50%',
                                     }}
                                 >
-                                    <TextField fullWidth label="Your Email" id="fullWidth" />
+                                    <TextField
+                                        fullWidth
+                                        label='Your Email'
+                                        defaultValue={user.email}
+                                        id="fullWidth" />
                                 </Box>
                             </div>
                             <div className="p-2">
@@ -43,11 +50,11 @@ const Contact = () => {
                                         maxWidth: '100%',
                                     }}
                                 >
-                                    <TextField fullWidth label="Your Massage" id="fullWidth" />
+                                    <TextField fullWidth label="Your Massage" id="fullWidth" required/>
                                 </Box>
-                                <div className='p-2'>
+                                <div className='pt-2'>
                                     <Link to='/home'>
-                                        <Button style={{textDecoration:"none"}} variant="outlined">Sent</Button></Link>
+                                        <Button style={{ textDecoration: "none" }} variant="contained">Sent</Button></Link>
                                 </div>
                             </div >
 
@@ -55,7 +62,9 @@ const Contact = () => {
                     </div>
                 </div>
             </div>
-            <Footer></Footer>
+            <div className='pt-5 mt-2'>
+                <ExFooter></ExFooter>
+            </div>
         </>
     );
 };

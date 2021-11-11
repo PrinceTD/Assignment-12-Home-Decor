@@ -22,7 +22,7 @@ const Header = () => {
             <Link className='nav-bar' to="/contact">Contact</Link>
             <Link className='nav-bar' to="/service">Service</Link>
             {
-              user.email ? <button onClick={logOut} className='nav-bar border-0'>SignOut</button> :
+              user.email ? <Link className="nav-bar"><button onClick={logOut} className='border-0'>SignOut</button></Link> :
                 <Link className='nav-bar' to="/login">LogIn</Link>
             }
 
