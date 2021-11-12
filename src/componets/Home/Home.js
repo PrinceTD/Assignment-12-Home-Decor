@@ -6,6 +6,9 @@ import Info from '../Page/info/Info';
 import Footer from '../share/Footer';
 import Follow from '../share/follow/Follow';
 import Add from '../share/Add/Add';
+import Service from '../Page/Service/Service';
+import HomeServiceLoad from '../Page/Service/HomeServiceLoad.js/HomeServiceLoad';
+import OurServiceProcess from '../Page/Service/OurServiceProcess/OurServiceProcess';
 
 
 const Home = () => {
@@ -14,7 +17,8 @@ const Home = () => {
             <Add></Add>
             <Header></Header>
             <Banner></Banner>
-            {/* <Info></Info> */}
+            <OurServiceProcess/>
+           <HomeServiceLoad></HomeServiceLoad>
             <Follow></Follow>
             <Footer></Footer>
 

@@ -14,7 +14,7 @@ const useFirebase = () => {
 
     const registerUser = (name, email, password, history) => {
         setIsLoading(true)
-        createUserWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, name, email, password)
             .then((userCredential) => {
 
                 setAuthError("");
@@ -23,10 +23,8 @@ const useFirebase = () => {
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
-                   
-                }).catch((error) => {
-                    
-                });
+
+                })
                 history.replace('/')
             })
             .catch((error) => {

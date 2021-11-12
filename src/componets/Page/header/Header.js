@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import "./Header.css"
 import useAuth from '../../../hooks/useAuth';
 import { Button } from '@mui/material';
+import { Box } from '@mui/system';
 
 
 const Header = () => {
@@ -19,11 +20,14 @@ const Header = () => {
           <Nav className="ms-auto">
             <Link className='nav-bar' to="/home">Home</Link>
             <Link className='nav-bar' to="/about">About</Link>
-            <Link className='nav-bar' to="/contact">Contact</Link>
             <Link className='nav-bar' to="/service">Service</Link>
+            <Link className='nav-bar' to="/contact">Contact</Link>
             {
-              user.email ? <Link className="nav-bar"><button onClick={logOut} className='border-0'>SignOut</button></Link> :
-                <Link className='nav-bar' to="/login">LogIn</Link>
+              user.email ? <Box>
+                <Link className='nav-bar' to="/dashboard">Dashboard</Link>
+                <Link className="nav-bar"><button onClick={logOut} className='border-0'>SignOut</button></Link>
+              </Box> :
+                <Link className='nav-bar' to="/login">Sign In</Link>
             }
 
           </Nav>

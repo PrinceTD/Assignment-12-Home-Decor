@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import './App.css';
+import Dashboard from './componets/DashBoard/Dashboard';
 import Home from './componets/Home/Home';
 import About from './componets/Page/About/About';
 import Contact from './componets/Page/Contact/Contact';
@@ -38,6 +39,9 @@ function App() {
             </PrivetRoute>
             <PrivetRoute path="/service">
               <Service></Service>
+            </PrivetRoute>
+            <PrivetRoute path="/dashboard">
+              <Dashboard>P</Dashboard>
             </PrivetRoute>
             <Route path="/login">
               <Login></Login>
