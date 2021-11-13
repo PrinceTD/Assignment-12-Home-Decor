@@ -16,7 +16,18 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import { Button, Grid } from '@mui/material';
-import Profile from './Profile';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+
+    useParams,
+    useRouteMatch
+} from "react-router-dom";
+import DashBoardHome from './DashBoardHome/DashBoardHome';
+import MAkeAdmin from './MakeAdmin/MAkeAdmin';
+import useAuth from '../../hooks/useAuth';
+import AdminRoute from '../Page/Login/AdminRoute/AdminRoute';
 
 
 
@@ -25,6 +36,8 @@ const drawerWidth = 240;
 function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const { admin } = useAuth();
+    let { path, url } = useRouteMatch();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -33,9 +46,23 @@ function Dashboard(props) {
     const drawer = (
         <div>
             <Toolbar />
-               <Link to="/service"> <Button>Product</Button> </Link>
+            <div className="text-center">
+                <Link to="/service"> <Button>Product</Button> </Link> <br />
+              
+                <Link to={`${url}/addReview`}> <Button>Add Review</Button> </Link>
+                <br />
+                {
+                      
+                        admin && <Box>
+                             <Link to={`${url}/makeAdmin`}> <Button>Add Admin</Button> </Link>
+                        </Box>
+                     
+                }
+
+            </div>
+
             <List>
-                {['Pay', 'My Orders', 'Review'].map((text, index) => (
+                {[].map((text, index) => (
                     <ListItem button key={text}>
                         <ListItemIcon>
                             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -46,7 +73,7 @@ function Dashboard(props) {
             </List>
 
 
-        </div>
+        </div >
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;
@@ -116,15 +143,15 @@ function Dashboard(props) {
                     sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
                 >
                     <Toolbar />
-                    <Grid container spacing={2}>
-                        <Grid item xs={9}>
-                          
-                        </Grid>
-                        <Grid item xs={3}>
-                            <Profile></Profile>
-                        </Grid>
+                    <Switch>
+                        <Route exact path={path}>
+                            <DashBoardHome></DashBoardHome>
+                        </Route>
+                        <AdminRoute path={`${path}/makeAdmin`}>
+                            <MAkeAdmin></MAkeAdmin>
+                        </AdminRoute>
+                    </Switch>
 
-                    </Grid>
                 </Box>
             </Box>
         </div>

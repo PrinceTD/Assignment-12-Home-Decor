@@ -38,12 +38,12 @@ function App() {
             <PrivetRoute path="/contact">
               <Contact></Contact>
             </PrivetRoute>
-            <Route path="/service/:serviceId">
+            <PrivetRoute path="/service/:serviceId">
               <SingleDataload></SingleDataload>
-            </Route>
-            <Route path="/service">
+            </PrivetRoute>
+            <PrivetRoute path="/service">
               <Service></Service>
-            </Route>
+            </PrivetRoute>
             <PrivetRoute path="/dashboard">
               <Dashboard></Dashboard>
             </PrivetRoute>
