@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Header from '../header/Header';
-import "./login.css";
 import login from "../../../img/login.jpg"
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import Container from '@mui/material/Container';
@@ -24,14 +23,17 @@ const Login = () => {
         const value = e.target.value;
         const newLoginData = { ...loginData };
         newLoginData[fild] = value;
+        
         setLoginData(newLoginData);
     }
     const handelLoginSubmit = e => {
+        console.log(loginData);
         loginUser(loginData.email, loginData.password, location, history);
         e.preventDefault();
     }
 
     const handelGoogleSignIn = () => {
+
         signInWithGoogle(location, history)
     }
 

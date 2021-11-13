@@ -13,7 +13,7 @@ const Profile = () => {
     const card = (
         <React.Fragment>
             <CardContent>
-                <Avatar style={{ alignItems: 'center' }} sx={{ bgcolor: deepOrange[500] }}>{user.displayName}</Avatar>
+                <Avatar style={{ alignItems: 'center' }} sx={{ bgcolor: deepOrange[500] }}>{user.displayName.slice(0,1)}</Avatar>
                 <Typography sx={{ mt: 1 }} color="text.secondary">
                     {user.displayName}
                 </Typography>

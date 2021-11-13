@@ -13,6 +13,7 @@ import Login from './componets/Page/Login/Login';
 import PrivetRoute from './componets/Page/Login/PrivetRoute/PrivetRoute';
 import Register from './componets/Page/Register/Register';
 import Service from './componets/Page/Service/Service';
+import SingleDataload from './componets/Page/Service/SingleData/SingleDataload';
 import AuthProvider from './context/AuthProvider';
 
 
@@ -37,12 +38,16 @@ function App() {
             <PrivetRoute path="/contact">
               <Contact></Contact>
             </PrivetRoute>
-            <PrivetRoute path="/service">
+            <Route path="/service/:serviceId">
+              <SingleDataload></SingleDataload>
+            </Route>
+            <Route path="/service">
               <Service></Service>
-            </PrivetRoute>
+            </Route>
             <PrivetRoute path="/dashboard">
-              <Dashboard>P</Dashboard>
+              <Dashboard></Dashboard>
             </PrivetRoute>
+
             <Route path="/login">
               <Login></Login>
             </Route>

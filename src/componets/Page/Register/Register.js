@@ -25,7 +25,7 @@ const Register = () => {
             alert("your password is not match");
             return
         }
-        registerUser(loginData.email,loginData.name, loginData.password, history);
+        registerUser(loginData.name, loginData.email, loginData.password, history);
         e.preventDefault();
     }
     return (

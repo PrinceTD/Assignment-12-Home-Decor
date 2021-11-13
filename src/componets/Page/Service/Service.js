@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { CircularProgress, Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import ExFooter from '../../share/ExFooter';
 import Header from '../header/Header';
@@ -7,7 +7,7 @@ import Services from './Services';
 const Service = () => {
     const [service, setService] = useState([]);
     useEffect(() => {
-        const url = "http://localhost:5000/product"
+        const url = "https://tranquil-ridge-16978.herokuapp.com/product"
         fetch(url)
             .then(res => res.json())
             .then(data => setService(data))
@@ -25,6 +25,7 @@ const Service = () => {
             </div>
             <div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+         
 
                     {
                         service.map (service => <Services

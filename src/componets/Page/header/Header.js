@@ -25,6 +25,7 @@ const Header = () => {
             {
               user.email ? <Box>
                 <Link className='nav-bar' to="/dashboard">Dashboard</Link>
+               
                 <Link className="nav-bar"><button onClick={logOut} className='border-0'>SignOut</button></Link>
               </Box> :
                 <Link className='nav-bar' to="/login">Sign In</Link>

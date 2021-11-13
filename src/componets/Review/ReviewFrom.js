@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SingleData = () => {
+const ReviewFrom = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const SingleData = () => {
     );
 };
 
-export default SingleData;
+export default ReviewFrom;

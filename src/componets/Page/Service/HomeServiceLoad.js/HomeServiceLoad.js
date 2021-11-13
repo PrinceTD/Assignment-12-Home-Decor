@@ -6,7 +6,7 @@ import HomeServices from '../HomeServiceLoad.js/HomeService';
 const HomeServiceLoad = () => {
     const [service, setService] = useState([]);
     useEffect(() => {
-        const url = "http://localhost:5000/product"
+        const url = "https://tranquil-ridge-16978.herokuapp.com/product"
         fetch(url)
             .then(res => res.json())
             .then(data => setService(data.slice(1, 7)))
