@@ -4,8 +4,10 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import "./Header.css"
 import useAuth from '../../../hooks/useAuth';
-import { Button } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
 import { Box } from '@mui/system';
+import { deepOrange } from '@mui/material/colors';
+import { MarginTwoTone } from '@mui/icons-material';
 
 
 const Header = () => {
@@ -23,10 +25,11 @@ const Header = () => {
             <Link className='nav-bar' to="/service">Service</Link>
             <Link className='nav-bar' to="/contact">Contact</Link>
             {
-              user.email ? <Box>
+              user.email ? <Box style={{display: 'flex'}}>
                 <Link className='nav-bar' to="/dashboard">Dashboard</Link>
                
                 <Link className="nav-bar"><button onClick={logOut} className='border-0'>SignOut</button></Link>
+                <Avatar style={{ alignItems: 'center' , marginLeft: "10px", marginBottom: "5px" }} sx={{ bgcolor: deepOrange[500] }}>{user.displayName.slice(0,1)}</Avatar>
               </Box> :
                 <Link className='nav-bar' to="/login">Sign In</Link>
             }

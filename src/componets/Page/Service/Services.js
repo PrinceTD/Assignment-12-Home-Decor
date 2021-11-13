@@ -16,7 +16,7 @@ const Services = ({ service }) => {
                 <img src={img} alt="" height='50%' />
                 <div class="card-body">
                     <h5 style={{ color: "coral" }} class="card-title">{name}</h5>
-                    <p class="card-text">{details.slice(0, 150)}</p>
+                    <p class="card-text">{details.slice(0, 150)}......</p>
                     <h3>$ {price}</h3>
                     <div className="d-flex justify-content-between">
                         <Link>
