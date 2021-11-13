@@ -6,7 +6,7 @@ const DashBoardHome = () => {
     return (
         <Grid container spacing={2}>
         <Grid item xs={9}>
-          
+          <h2>your Order:</h2>
         </Grid>
         <Grid item xs={3}>
             <Profile></Profile>
