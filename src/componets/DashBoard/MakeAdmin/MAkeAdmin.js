@@ -12,7 +12,7 @@ const MAkeAdmin = () => {
     }
     const handelAdmin = e => {
         const user = { email };
-        fetch('http://localhost:5000/users/admin', {
+        fetch('https://tranquil-ridge-16978.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
