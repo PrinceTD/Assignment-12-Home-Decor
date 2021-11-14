@@ -7,6 +7,7 @@ import {
 import './App.css';
 import Dashboard from './componets/DashBoard/Dashboard';
 import Home from './componets/Home/Home';
+import NotFound from './componets/NotFound/NotFound';
 import About from './componets/Page/About/About';
 import Contact from './componets/Page/Contact/Contact';
 import Login from './componets/Page/Login/Login';
@@ -53,6 +54,9 @@ function App() {
             </Route>
             <Route path="/register">
               <Register></Register>
+            </Route>
+            <Route path="*">
+              <NotFound></NotFound>
             </Route>
           </Switch>
         </Router>
