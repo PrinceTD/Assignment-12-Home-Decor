@@ -9,6 +9,7 @@ import Add from '../share/Add/Add';
 import Service from '../Page/Service/Service';
 import HomeServiceLoad from '../Page/Service/HomeServiceLoad.js/HomeServiceLoad';
 import OurServiceProcess from '../Page/Service/OurServiceProcess/OurServiceProcess';
+import Review from '../Review/Review';
 
 
 const Home = () => {
@@ -19,7 +20,9 @@ const Home = () => {
             <Banner></Banner>
             <OurServiceProcess/>
            <HomeServiceLoad></HomeServiceLoad>
+          
             <Follow></Follow>
+            <Review></Review>
             <Footer></Footer>
 
         </div>

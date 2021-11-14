@@ -8,7 +8,9 @@ const Footer = () => {
     const {user}= useAuth();
     return (
         <div className='container text-center'>
+             <hr/>
             <div className="row mt-5 mb-5">
+               
                 <div className="col-12 col-md-4">
                     <span style={{ fontFamily: "'Mochiy Pop P One', sans-serif", }} className='info'>Home Decore.</span>
                 </div>
