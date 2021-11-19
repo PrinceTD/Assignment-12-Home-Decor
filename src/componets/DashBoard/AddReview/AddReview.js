@@ -9,7 +9,7 @@ const AddReview = () => {
     const { user } = useAuth();
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = (data) => {
-        fetch("http://localhost:5000/review", {
+        fetch("https://tranquil-ridge-16978.herokuapp.com/review", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
