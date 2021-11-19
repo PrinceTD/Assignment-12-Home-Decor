@@ -22,13 +22,25 @@ const style = {
 const BookingModel = ({ open, handleClose, service }) => {
     const { name, price } = service
     const { user } = useAuth();
+  
 
     const handelBookingSubmit = e => {
-
         alert("thank u for buying");
+       
         handleClose()
         e.preventDefault()
     }
+    const onSubmit = (data) => {
+        const newData = { ...data, status: "pending" };
+        fetch("", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(newData),
+        }).then((res) => { });
+      
+    };
 
     return (
         <div>
@@ -74,11 +86,13 @@ const BookingModel = ({ open, handleClose, service }) => {
 
                             sx={{ width: "90%", m: 1 }}
                             id='outline-size-small'
+                            type=''
                             defaultValue="Your Phone Number"
                             size='small'
                         />
-                        <Button sx={{ m: 1 }} variant="outlined">Confirm</Button>
-
+                        <Button
+                            type="submit"
+                            sx={{ m: 1 }} variant="outlined">Place Order</Button>
                     </form>
                 </Box>
             </Modal>

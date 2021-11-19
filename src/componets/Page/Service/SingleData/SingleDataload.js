@@ -1,5 +1,8 @@
+import Button from '@restart/ui/esm/Button';
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { Link, useParams } from 'react-router-dom';
+import useAuth from '../../../../hooks/useAuth';
 import ExFooter from '../../../share/ExFooter';
 import Header from '../../header/Header';
 import BookingModel from '../ModelOrder/BookingModel';
@@ -7,8 +10,8 @@ import ShowProduct from './ShowProduct';
 
 const SingleDataload = () => {
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const { register, handleSubmit, reset } = useForm();
+    const { user } = useAuth();
 
     const [service, setService] = useState({});
     const { serviceId } = useParams();
@@ -17,6 +20,19 @@ const SingleDataload = () => {
             .then(res => res.json())
             .then(data => setService(data));
     }, []);
+    const onSubmit = (data) => {
+        const newData = { ...data, status: "pending" };
+        fetch("http://localhost:5000/orders", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(newData),
+        }).then((res) => { });
+        setOpen(true);
+        reset();
+    };
+
     return (
         <div>
             <Header></Header>
@@ -37,15 +53,72 @@ const SingleDataload = () => {
                         </div>
                     </div>
                 </div>
+                {service._id && <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                    }}
+                >
+                    <label htmlFor="name">Full Name</label>
+                    <input
+                        {...register("name")}
+                        type="text"
+                        id="name"
+                        required
+                        defaultValue={user.displayName}
+                        readOnly
+                    />
+                    <label htmlFor="email">Email</label>
+                    <input
+                        {...register("email")}
+                        type="email"
+                        id="email"
+                        required
+                        defaultValue={user.email}
+                        readOnly
+                    />
+                    <label htmlFor="product-id">
+                        Product ID
+                    </label>
+                    <input
+                        {...register("productId")}
+                        type="text"
+                        id="product-id"
+                        required
+                        defaultValue={service._id}
+                        readOnly
+                    />
+                    <label htmlFor="address">Address</label>
+                    <input
+                        {...register("address")}
+                        type="address"
+                        required
+                        id="address"
+                        placeholder="Address"
+                    />
+
+                    <label htmlFor="phone">Phone</label>
+                    <input
+                        {...register("phone")}
+                        type="tel"
+                        required
+                        id="phone"
+                        placeholder="Mobile"
+                    />
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        sx={{ mt: 3, fontSize: "1.5rem" }}
+                    >
+                        Place Order
+                    </Button>
+                </form>}
 
                 <ExFooter></ExFooter>
             </div>
 
-            {/* <BookingModel
-          service={service.name}
-          open={open}
-          handleClose={handleClose}
-          ></BookingModel> */}
+         
 
 
         </div>

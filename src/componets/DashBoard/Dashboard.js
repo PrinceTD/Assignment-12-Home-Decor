@@ -32,6 +32,8 @@ import Pay from './Pay/Pay';
 import ManageProducts from './ManageProducts/ManageProducts';
 import ManageAllOrder from './manageAllOrder/ManageAllOrder';
 import AddProfuct from './addProfuct/AddProfuct';
+import MyOrder from './MyOrder/MyOrder';
+import AddReview from './AddReview/AddReview';
 
 
 
@@ -54,6 +56,8 @@ function Dashboard(props) {
                 <Link to="/service"> <Button>Product</Button> </Link> <br />
                
                 <Link to={`${url}/pay`}> <Button>Pay</Button> </Link> <br />
+                <Link to={`${url}/myOrder`}> <Button>My Order</Button> </Link>
+                <br />
                 <Link to={`${url}/addReview`}> <Button>Add Review</Button> </Link>
                 <br />
                 {
@@ -169,6 +173,12 @@ function Dashboard(props) {
                         </AdminRoute>
                         <Route path={`${path}/pay`}>
                             <Pay></Pay>
+                        </Route>
+                        <Route path={`${path}/myOrder`}>
+                           <MyOrder/>
+                        </Route>
+                        <Route path={`${path}/addReview`}>
+                           <AddReview/>
                         </Route>
                     </Switch>
 
