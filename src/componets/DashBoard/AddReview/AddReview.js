@@ -56,6 +56,7 @@ const AddReview = () => {
                                 {...register("rating", { min: 1, max: 5 })}
                                 type="number"
                                 id="rating"
+                                placeholder='1 to 5'
                                 required
                             />
                             <label htmlFor="review">Review</label>

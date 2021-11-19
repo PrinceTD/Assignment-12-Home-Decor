@@ -1,179 +1,64 @@
-import * as React from "react";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import useAuth from "../../../hooks/useAuth";
-import { Button } from "@mui/material";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import React, { useEffect, useState } from 'react';
+import useAuth from '../../../hooks/useAuth';
 
-const columns = [
-    { id: "productId", label: "Product Id", minWidth: 170 },
-    { id: "address", label: "Address", minWidth: 100 },
-    {
-        id: "phone",
-        label: "Phone",
-        minWidth: 80,
-        align: "right",
-    },
-    {
-        id: "email",
-        label: "Email",
-        minWidth: 170,
-        align: "right",
-    },
-    {
-        id: "status",
-        label: "Order Status",
-        minWidth: 170,
-        align: "right",
-    },
-    {
-        id: "action",
-        label: "Action",
-        minWidth: 170,
-        align: "right",
-    },
-];
+const MyOrder = () => {
+    const { user } = useAuth()
+    const [order, setOrder] = useState([]);
+    useEffect(() => {
+        fetch(`https://tranquil-ridge-16978.herokuapp.com/orders/${user.email}`)
+            .then((res) => res.json())
+            .then((data) => setOrder(data));
+    }, []);
 
-const MyOrders = () => {
-    const [orders, setOrders] = React.useState([]);
-    const { user } = useAuth();
-    const [open, setOpen] = React.useState(false);
-    const [targetId, setTargetId] = React.useState("");
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-  
-    React.useEffect(() => {
+    const handleDeleteConfirm = (id) => {
+        const confirm = window.confirm("are u sure")
+       if(confirm){
         fetch(
-            `https://nameless-lowlands-17762.herokuapp.com/orders/${user.email}`
+            `https://tranquil-ridge-16978.herokuapp.com/orders/${id}`,
+            {
+                method: "DELETE",
+            }
         )
             .then((res) => res.json())
-            .then((data) => setOrders(data));
-    }, [user.email]);
-    const handleDelete = (id) => {
-        handleClickOpen();
-        setTargetId(id);
+            .then((data) => {
+                const rest = order.filter((SingleOrders) =>SingleOrders._id !== id);
+                setOrder(rest);
+               
+            });
+       }
+        
     };
     return (
-        <>
-            <Paper sx={{ width: "100%" }}>
-                <TableContainer sx={{ maxHeight: 440 }}>
-                    <Table stickyHeader aria-label="sticky table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell
-                                    align="center"
-                                    colSpan={columns.length}
-                                >
-                                    My Orders
-                                </TableCell>
-                            </TableRow>
-                            <TableRow>
-                                {columns.map((column) => (
-                                    <TableCell
-                                        key={column.id}
-                                        align={column.align}
-                                        style={{
-                                            top: 57,
-                                            minWidth: column.minWidth,
-                                        }}
-                                    >
-                                        {column.label}
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {orders.map((row) => {
-                                return (
-                                    <TableRow
-                                        hover
-                                        role="checkbox"
-                                        tabIndex={-1}
-                                        key={row._id}
-                                    >
-                                        {columns.map((column) => {
-                                            const value = row[column.id];
-                                            return (
-                                                <TableCell
-                                                    key={column.id}
-                                                    align={column.align}
-                                                >
-                                                    {column.id === "action" ? (
-                                                        <Button
-                                                            color="secondary"
-                                                            onClick={() =>
-                                                                handleDelete(
-                                                                    row._id
-                                                                )
-                                                            }
-                                                        >
-                                                            {" "}
-                                                            Delete
-                                                        </Button>
-                                                    ) : (
-                                                        value
-                                                    )}
-                                                </TableCell>
-                                            );
-                                        })}
-                                    </TableRow>
-                                );
-                            })}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Paper>
-            <div>
-                <Dialog
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                    PaperProps={{
-                        style: {
-                            backgroundColor: "#fff",
-                            borderRadius: 0,
-                        },
-                    }}
-                >
-                    <DialogTitle id="alert-dialog-title">
-                        {"Are You Sure?"}
-                    </DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            Make sure you are doing right. This action can't be
-                            undone!
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose}>Close</Button>
-                        <Button
-                            variant="outlined"
-                            color="error"
-                            onClick={handleConfirm}
-                            autoFocus
-                        >
-                            Delete
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            </div>
-        </>
+        <div>
+            <table className="table">
+                <thead>
+                    <tr>
+
+                        <th scope="col">Product Id</th>
+                        <th scope="col">Product name</th>
+                        <th scope="col">Order Status</th>
+                        <th scope="col">Order delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        order?.map(SingleOrder => 
+                            <tr
+                            key={SingleOrder._id}
+                            >
+                                <td>{SingleOrder._id}</td>
+                                <td>{SingleOrder.name}</td>
+                                <td>Panding</td>
+                                <td><button onClick={()=>handleDeleteConfirm(SingleOrder._id)}>X</button></td>
+
+                            </tr>
+                        )
+                    }
+
+                </tbody>
+            </table>
+        </div>
     );
 };
-export default MyOrders;
+
+export default MyOrder;

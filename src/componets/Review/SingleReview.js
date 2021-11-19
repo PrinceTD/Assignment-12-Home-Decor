@@ -9,16 +9,15 @@ import Typography from '@mui/material/Typography';
 const SingleReview = ({ review }) => {
 
     return (
-        <div class="card-group">
-            <div class="card">
+        <div>
+            <div class="card g-2">
 
                 <div class="card-body">
                     <h5 class="card-title">{review.name}</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p>{review.rating}</p>
+                    <p class="card-text">{review.review}</p>
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
+                
             </div>
 
         </div>

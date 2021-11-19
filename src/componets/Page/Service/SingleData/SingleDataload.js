@@ -5,8 +5,6 @@ import { Link, useParams } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
 import ExFooter from '../../../share/ExFooter';
 import Header from '../../header/Header';
-import BookingModel from '../ModelOrder/BookingModel';
-import ShowProduct from './ShowProduct';
 
 const SingleDataload = () => {
     const [open, setOpen] = React.useState(false);
@@ -22,7 +20,7 @@ const SingleDataload = () => {
     }, []);
     const onSubmit = (data) => {
         const newData = { ...data, status: "pending" };
-        fetch("http://localhost:5000/orders", {
+        fetch("https://tranquil-ridge-16978.herokuapp.com/orders", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

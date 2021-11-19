@@ -5,7 +5,7 @@ import SingleReview from "./SingleReview";
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/review")
+        fetch("https://tranquil-ridge-16978.herokuapp.com/review")
             .then((res) => res.json())
             .then((data) => setReviews(data));
     }, []);
@@ -13,16 +13,18 @@ const Reviews = () => {
         <div>
             <Container sx={{ py: 4, mt: 6 }}>
                 <Typography variant="h3" sx={{ my: 2 }}>
-                    What people says about us?
+                   People says about us?
                 </Typography>
                 <Divider sx={{ mb: 3 }} />
-               
-                    {reviews.map((review) => (
+               <div  class="card-group">
+                   
+               {reviews.map((review) => (
                        <SingleReview
                             key={review._id}
                             review={review}
                         ></SingleReview>
                     ))}
+               </div>
               
             </Container>
         </div>
